@@ -292,13 +292,6 @@
         background: linear-gradient(90deg, #059669 60%, #22d3ee 100%);
         transform: translateY(-2px) scale(1.04);
       }
-      .share-btn {
-        background: linear-gradient(90deg, #3b82f6 60%, #9333ea 100%);
-      }
-      .share-btn:hover {
-        background: linear-gradient(90deg, #2563eb 60%, #9333ea 100%);
-        transform: translateY(-2px) scale(1.04);
-      }
       .footer {
         margin-top: 2rem;
         text-align: center;
@@ -499,31 +492,6 @@
             </svg>
             Download
           </button>
-
-          <button
-            onclick="shareQRCode()"
-            class="action-btn share-btn"
-            id="shareBtn"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="18" cy="5" r="3"></circle>
-              <circle cx="6" cy="12" r="3"></circle>
-              <circle cx="18" cy="19" r="3"></circle>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-            </svg>
-            Share
-          </button>
         </div>
       </div>
 
@@ -647,27 +615,6 @@
         ctx.lineTo(x, y + radius);
         ctx.quadraticCurveTo(x, y, x + radius, y);
         ctx.closePath();
-      }
-
-      function shareQRCode() {
-        const qrText = document.getElementById('qrText').value.trim();
-
-        if (navigator.share) {
-          navigator
-            .share({
-              title: 'QR Code',
-              text: `QR Code for: ${qrText}`,
-              url: qrText.startsWith('http') ? qrText : window.location.href,
-            })
-            .catch((error) => {
-              console.log('Error sharing:', error);
-              alert('Could not share the QR code. Try downloading it instead.');
-            });
-        } else {
-          alert(
-            'Web Share API is not supported in your browser. Try downloading the QR code instead.'
-          );
-        }
       }
 
       // Add event listener for Enter key on input field
